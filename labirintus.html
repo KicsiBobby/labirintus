@@ -24,6 +24,12 @@
     <script>
 
         let t = [];
+        let ps = 1;
+        let po = 1;
+        let ks = 1;
+        let ko = 1;
+        let ds = 1;
+        
 
         function start(){
             let html="";
@@ -61,9 +67,15 @@
                 for(let s=19; s>0; o--) if(t[s-1][o] != "wall") setKep(s,o,"wall");
             }
                 }
-            }
-            
-            
+        }
+        po=1; ps=Math.floor(Math.random()*10)*2+1); setKep(ps,po, "man");    
+        do  {
+            ks=Math.floor(Math.random()*19+1);
+            ko=Math.floor(Math.random()*28+2);
+        }    while(t[ks][ko]=="wall")
+        setKep(ks,ko,"key");
+        ds=Math.floor(Math.random()*19+1) setKep(ds,30,"door");
+
             
         }
 
@@ -72,9 +84,18 @@
             t[s][o]=kep;
         }
 
+        function mozog(){
+            let b = event.key;
+            setKep(ps,po,"null");
+            if (b == 'w' && go.includes(t[ps-1][po])) ps--;
+            if (b == 's') ps++;
+            if (b == 'a') po--;
+            if (b == 'd') po++;
+            setKep(ps,po,"man");
+        }
     </script>
 </head>
-<body onabort="start();">
+<body onabort="start();" onkeypress="mozog();">
     
     <div id="jatek"></div>
 
